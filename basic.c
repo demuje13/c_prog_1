@@ -37,3 +37,45 @@ int main(void){
         free(src) ; free(dst) ; 
         return 0 ;
 }
+//another simple example of alloc for 2d array 
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+int main(void){
+        int row = 3 ; 
+        int coll = 3 ;
+        int **matrix = (int **)malloc(sizeof(int *) * row) ; 
+        if(matrix == NULL){
+                fprintf(stderr , "Failed to do alloc row !") ;
+                return -1 ; 
+        }
+        for(int i = 0 ; i < row ; i++){
+                matrix[i] = (int *)malloc(sizeof(int) * coll) ; 
+                if(matrix[i] == NULL){
+                        fprintf(stderr , "Failed to allocate matrix[i]") ; 
+                        int x = 0 ; 
+                        for(int x = 0 ; x < i ; x++){
+                                free(matrix[x]) ;
+                        }
+                        free(matrix) ; 
+                        exit(EXIT_FAILURE) ;
+                }
+        }
+        int count = 0 ;
+        for(int i = 0 ; i < row ; i++){
+                for(int j = 0 ; j < coll ; j++){
+                        matrix[i][j] = count++ ;
+                }
+        }
+
+        for(int i = 0 ; i < row ; i++){
+                for(int j = 0 ; j < coll ; j++){
+                        printf("%d " ,matrix[i][j]) ;
+                }
+                printf("\n") ;
+        }
+        for(int i= 0 ; i < row ; i++){
+                free(matrix[i]) ;
+        }
+        free(matrix) ;
+}

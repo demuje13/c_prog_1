@@ -79,3 +79,28 @@ int main(void){
         }
         free(matrix) ;
 }
+//using posix memaligmnent 
+#include<stdio.h>
+#include<stdlib.h>
+#include<unistd.h>
+#include<string.h>
+int main(void){
+        void *pointer ; 
+        size_t size = sizeof(int) * 10 ; 
+        size_t memalign_boundary = 16 ; 
+        if(posix_memalign(&pointer , memalign_boundary , size) == 0){
+                memset(pointer , 0 , size) ; 
+                int *array = (int *)pointer ; 
+                for(int i = 0 ; i < 10 ; i++){
+                        array[i] = i + 10 ;
+                }
+                for(int i = 0 ; i < 10 ; i++){
+                        printf("Array :%d of value :%d of mem addr : %p\n" , i , array[i] ,(void *)&array[i]) ; 
+                }
+                free(pointer) ;
+        }else{
+                fprintf(stderr , "Posix mem alignment failed !\n") ; 
+                exit(EXIT_FAILURE) ;
+        }
+        return 0 ;
+}

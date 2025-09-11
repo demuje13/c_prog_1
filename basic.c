@@ -144,3 +144,5 @@ int main() {
     return 0;
 }
 
+-- SIMD (Single Instruction, Multiple Data)
+-- AVX = Advanced Vector Extensions

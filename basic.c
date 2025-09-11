@@ -104,3 +104,22 @@ int main(void){
         }
         return 0 ;
 }
+//for a single digit 
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+int main(void){
+        void *ptr ; 
+        size_t size_of_int = sizeof(int) ; 
+        size_t alignment_bound = 16 ; 
+        if(posix_memalign(&ptr , alignment_bound , size_of_int) == 0){
+                memset(ptr , 0 , sizeof(int)) ; 
+                int *number = (int *)ptr ; 
+                *number = 10 ;
+                printf("The number is :%d of mem addr :%p\n" , *number , ptr) ;
+                free(ptr) ;
+        }else{
+                return -1 ;
+        }
+        return 0 ;
+}

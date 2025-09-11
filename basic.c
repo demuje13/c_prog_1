@@ -123,3 +123,24 @@ int main(void){
         }
         return 0 ;
 }
+//safe , trust , use -mavx lnker 
+#include <stdio.h>
+#include <stdlib.h>
+#include <immintrin.h>
+
+int main() {
+    void *ptr;
+    size_t alignment = 32;
+    size_t size = 8 * sizeof(float);
+    if (posix_memalign(&ptr, alignment, size)) return 1;
+    float *arr = ptr;
+    for (int i = 0; i < 8; i++) arr[i] = i + 1;
+    __m256 vec = _mm256_load_ps(arr);
+    float result[8] __attribute__((aligned(32)));  
+    _mm256_store_ps(result, vec);
+    for (int i = 0; i < 8; i++) printf("%.1f ", result[i]);
+    printf("\n");
+    free(ptr);
+    return 0;
+}
+

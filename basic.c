@@ -146,3 +146,33 @@ int main() {
 
 -- SIMD (Single Instruction, Multiple Data)
 -- AVX = Advanced Vector Extensions
+-- simple avx 
+//this code does the same as previous ...but it it for unsigned int and the previous was for float 
+#include<stdio.h>
+#include<stdlib.h>
+#include<unistd.h>
+#include<immintrin.h>
+#include<string.h>
+int main(void){
+        void *ptr ; 
+        size_t value_size = sizeof(unsigned int) * 8  ; 
+        size_t bound = 32 ; 
+        if(posix_memalign(&ptr , bound , value_size) == 0){
+                memset(ptr , 0 , sizeof(unsigned int) * 8) ; 
+                unsigned int *array = (unsigned int *)ptr ; 
+                for(int i = 0 ; i < 8 ; i++){
+                        array[i] = (unsigned int)(i * 10u) ;
+                }
+                unsigned int result[8] __attribute__((aligned(32))) ; 
+                __m256i vector = _mm256_load_si256((__m256i *)array) ;
+                _mm256_store_si256((__m256i*)result , vector) ; 
+                for(int i = 0 ; i < 8 ; i++){
+                        printf("%d\n" , array[i]) ;
+                }
+                free(ptr) ;
+        }else{
+                fprintf(stderr , "Posix memalign failed \n") ;
+                exit(EXIT_FAILURE) ;
+        }
+        return 0 ;
+}

@@ -191,3 +191,23 @@ int main(void){
     Book b1 = {"How to fuck enemy" , {20 , 8 , 2025}} ; 
     printf("The book name :%s\n release time :%d : %d :%d\n" ,b1.book_name , b1.release.date , b1.release.month , b1.release.year); 
 }
+
+//another simple example of struct and node 
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct {
+    int data ; 
+    struct Node *next ;
+}Node ; 
+int main(void){
+    Node *number = malloc(sizeof(Node)) ;
+    if(number == NULL){
+        fprintf(stderr , "failed to alloc for Node !\n") ; 
+        return -1;
+    }
+    number->data = 120 ; 
+    number->next = NULL ; 
+    printf("The value of data is :%d and the asddress is :%p\n" , number->data , (void *)number);
+    printf("The next node addr is :%p\n " , number->next) ;
+    free(number) ;
+}

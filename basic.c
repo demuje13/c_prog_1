@@ -229,3 +229,22 @@ int main(void){
     free(value) ;
     return 0 ;
 }
+//forloop + struct 
+#include<stdio.h>
+typedef struct {
+    char name[20] ;
+    int power_level  ; 
+}Evil ;
+int main(void){
+    Evil mons[4] = {
+        {"Evil" , 20} , 
+        {"Demon" , 50} , 
+        {"Devil" , 90} ,
+        {"God" , 0} 
+    } ;
+    size_t size = sizeof(mons) / sizeof(mons[0]) ;
+    for(int i = 0 ; i < size ; i++){
+        printf("%s has the power level :%d\n" , mons[i].name  , mons[i].power_level) ; 
+    }
+    return 0 ;
+}

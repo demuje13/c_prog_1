@@ -176,3 +176,18 @@ int main(void){
         }
         return 0 ;
 }
+//another c code 
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct {
+    int date , month , year ;
+}Date ; 
+
+typedef struct {
+   char  book_name[20] ; 
+   Date release ;
+}Book ; 
+int main(void){
+    Book b1 = {"How to fuck enemy" , {20 , 8 , 2025}} ; 
+    printf("The book name :%s\n release time :%d : %d :%d\n" ,b1.book_name , b1.release.date , b1.release.month , b1.release.year); 
+}

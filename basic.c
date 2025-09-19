@@ -211,3 +211,21 @@ int main(void){
     printf("The next node addr is :%p\n " , number->next) ;
     free(number) ;
 }
+//another code for struct and pointer 
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct {
+    int x ; 
+    int y ;
+}Point ; 
+typedef Point *pointptr ; 
+int main(void){
+    pointptr value = malloc(sizeof(Point)) ; 
+    if(value == NULL) return -1 ; 
+    value->x = 10 ; 
+    value->y = 20 ; 
+    printf("first : Addr is :%p of value :%d\n" , (void *)&value , value->x) ;
+    printf("Second : Addr is :%p of value :%d\n" , (void *)&value , value->y) ;
+    free(value) ;
+    return 0 ;
+}

@@ -248,3 +248,20 @@ int main(void){
     }
     return 0 ;
 }
+//using pointer of struct 
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct Point{
+    int num1 ;
+    int num2 ;
+}Point ;
+typedef Point *point_ptr ;
+int main(void){
+    point_ptr data = malloc(sizeof(Point)) ;
+    if(data == NULL) return -1 ;
+    data->num1 = 10 ;
+    data->num2 = 200 ;
+    printf("Number 1 is :%d and number 2 is :%d\n" , data->num1 , data->num2) ;
+    free(data) ;
+    return 0 ;
+}

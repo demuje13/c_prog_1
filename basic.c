@@ -322,3 +322,31 @@ int main(void){
     greet(hello) ;
     return 0 ;
 }
+//another simple 
+#include<stdio.h>
+typedef struct Operation{
+    char op ;
+    int (*func_ptr)(int , int) ;
+}Operation ;
+
+int add(int a , int b){
+    return a + b ;
+}
+int sub(int a , int b){
+    return a - b ;
+}
+int mul(int a , int b){
+    return a * b ;
+}
+int main(void){
+    Operation opt[] = {
+        {'+' , add} ,
+        {'-' , sub} ,
+        {'*' , mul}
+    } ;
+    int size = sizeof(opt) / sizeof(opt[0]) ;
+    for(int i = 0 ; i < size ; i++){
+        printf("10  %c  20 = %d\n" , opt[i].op , opt[i].func_ptr(10 , 20)) ;
+    }
+    return 0 ;
+}

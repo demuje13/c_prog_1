@@ -265,3 +265,20 @@ int main(void){
     free(data) ;
     return 0 ;
 }
+//calculate 
+#include<stdio.h>
+int add(int a , int b){
+    return a + b ;
+}
+int sub(int a , int b){
+    return a - b ;
+}
+int mul(int a , int b){
+    return a * b ;
+}
+int main(void){
+    int (*op[3])(int , int) = {add , sub  , mul} ;
+    printf("Addition :%d\n" , op[0](20 , 10)) ;
+    printf("Sub : :%d\n" , op[1](10 , 20)) ;
+    printf("Mul :%d\n" , op[2](10 , 30)) ;
+}

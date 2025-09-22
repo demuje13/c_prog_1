@@ -310,3 +310,15 @@ int main(void){
     }
     return 0 ;
 }
+//function callback 
+#include<stdio.h>
+int greet(void (*func_ptr)(void)){
+    func_ptr() ;
+}
+void hello(void){
+    printf("Hello world") ;
+}
+int main(void){
+    greet(hello) ;
+    return 0 ;
+}

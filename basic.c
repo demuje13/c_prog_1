@@ -295,3 +295,18 @@ int main(void){
     printf("Result is :%d\n" , res) ;
     return 0 ;
 }
+//qsort 
+#include<stdio.h>
+#include<stdlib.h>
+int comp(const void *num1 ,const void *num2){
+    return (*(int *)num1 - *(int *)num2) ;
+}
+int main(void){
+    int array[] = {12 , 32 , 4 , 5 , 90 , 100} ;
+    int size = sizeof(array) / sizeof(array[0]) ;
+    qsort(array , size , sizeof(int) , comp) ;
+    for(int i = 0 ; i < size ; i++){
+        printf("%d \n" ,array[i]) ;
+    }
+    return 0 ;
+}

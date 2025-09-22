@@ -282,3 +282,16 @@ int main(void){
     printf("Sub : :%d\n" , op[1](10 , 20)) ;
     printf("Mul :%d\n" , op[2](10 , 30)) ;
 }
+//func ptr as arg 
+#include<stdio.h>
+int add(int a , int b){
+    return a + b ;
+}
+int calc(int x , int y , int (*op)(int , int)){
+    return op(x , y) ;
+}
+int main(void){
+    int res = calc(10 , 20 , add) ;
+    printf("Result is :%d\n" , res) ;
+    return 0 ;
+}

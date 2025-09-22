@@ -350,3 +350,26 @@ int main(void){
     }
     return 0 ;
 }
+//another simple example ....dyn array + malloc + struct 
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct IntArray{
+    int *array ;
+    int size ;
+}IntArray ;
+int main(void){
+    IntArray bar ;
+    bar.size = 10 ;
+    bar.array = malloc(sizeof(int) * bar.size) ;
+    if(bar.array == NULL){
+        perror("Failed !") ;
+    }
+    for(int i = 0 ; i < bar.size ; i++){
+        bar.array[i] = (i + 1) * 10 ;
+    }
+    for(int i = 0 ; i < bar.size ; i++){
+        printf("%d\n" , bar.array[i]) ;
+    }
+    free(bar.array) ;
+    return 0 ;
+}
